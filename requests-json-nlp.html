@@ -7629,7 +7629,7 @@ wheel              0.43.0
 <div class="highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">requests</span>
 <span class="kn">import</span> <span class="nn">json</span>
 
-<span class="n">result</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">'https://api.lyrics.ovh/v1/They%20Might%20Be</span><span class="si">%20G</span><span class="s1">iants/Birdhouse</span><span class="si">%20i</span><span class="s1">n%20your</span><span class="si">%20s</span><span class="s1">oul'</span><span class="p">)</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">'https://api.lyrics.ovh/v1/They Might Be Giants/Birdhouse in your soul'</span><span class="p">)</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -7723,6 +7723,8 @@ wheel              0.43.0
 
 <span class="c1"># Print the polarity score</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">"Polarity Score:"</span><span class="p">,</span> <span class="n">polarity_score</span><span class="p">)</span>
+
+<span class="c1"># Based on a polarity score of approximately 0.04, we can infer that the sentiment of the lyrics is slightly positive, but closer to neutral overall. </span>
 </pre></div>
 </div>
 </div>
@@ -7929,9 +7931,31 @@ Lyrics for 'Here Comes the Sun' by The Beatles saved to 'here_comes_the_sun_lyri
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h4 id="Question-4">Question 4<a class="anchor-link" href="#Question-4">¶</a></h4>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <ol start="4">
 <li>Write a function that takes the name of a file that contains song lyrics, loads the file, performs sentiment analysis, and returns the polarity score.  Use this function to print the polarity scores (with the name of the song) of the three files you created in question 3.  Does the reported polarity match your understanding of the song's lyrics? Why or why not do you think that might be?  Answer the questions in either a comment in the code cell or a markdown cell under the code cell.</li>
 </ol>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h4 id="Question-4-Response---Part-1:">Question 4 Response - Part 1:<a class="anchor-link" href="#Question-4-Response---Part-1:">¶</a></h4>
 </div>
 </div>
 </div>
@@ -7943,7 +7967,7 @@ Lyrics for 'Here Comes the Sun' by The Beatles saved to 'here_comes_the_sun_lyri
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">analyze_sentiment</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">analyze_sentiment</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">song_title</span><span class="p">):</span>
     <span class="c1"># Load the file containing song lyrics</span>
     <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="s1">'r'</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
         <span class="n">lyrics</span> <span class="o">=</span> <span class="n">file</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
@@ -7954,19 +7978,20 @@ Lyrics for 'Here Comes the Sun' by The Beatles saved to 'here_comes_the_sun_lyri
     <span class="n">doc</span> <span class="o">=</span> <span class="n">nlp</span><span class="p">(</span><span class="n">lyrics</span><span class="p">)</span>
     <span class="n">polarity_score</span> <span class="o">=</span> <span class="n">doc</span><span class="o">.</span><span class="n">_</span><span class="o">.</span><span class="n">polarity</span>
     
+    <span class="c1"># Print the polarity score with the full song title</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Polarity score for '</span><span class="si">{</span><span class="n">song_title</span><span class="si">}</span><span class="s2">': </span><span class="si">{</span><span class="n">polarity_score</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+    
     <span class="k">return</span> <span class="n">polarity_score</span>
 
 <span class="c1"># Testing the function with the three files created in question 3</span>
-<span class="n">file_names</span> <span class="o">=</span> <span class="p">[</span>
-    <span class="s1">'hurt_lyrics.txt'</span><span class="p">,</span>
-    <span class="s1">'eye_of_the_tiger_lyrics.txt'</span><span class="p">,</span>
-    <span class="s1">'i_will_survive_lyrics.txt'</span>
+<span class="n">file_titles</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">(</span><span class="s1">'hurt_lyrics.txt'</span><span class="p">,</span> <span class="s1">'Hurt by Johnny Cash'</span><span class="p">),</span>
+    <span class="p">(</span><span class="s1">'eye_of_the_tiger_lyrics.txt'</span><span class="p">,</span> <span class="s1">'Eye of the Tiger by Survivor'</span><span class="p">),</span>
+    <span class="p">(</span><span class="s1">'i_will_survive_lyrics.txt'</span><span class="p">,</span> <span class="s1">'I Will Survive by Gloria Gaynor'</span><span class="p">)</span>
 <span class="p">]</span>
 
-<span class="k">for</span> <span class="n">file_name</span> <span class="ow">in</span> <span class="n">file_names</span><span class="p">:</span>
-    <span class="n">song_name</span> <span class="o">=</span> <span class="n">file_name</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">'_'</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">'_'</span><span class="p">,</span> <span class="s1">' '</span><span class="p">)</span><span class="o">.</span><span class="n">title</span><span class="p">()</span>
-    <span class="n">polarity_score</span> <span class="o">=</span> <span class="n">analyze_sentiment</span><span class="p">(</span><span class="n">file_name</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Polarity score for '</span><span class="si">{</span><span class="n">song_name</span><span class="si">}</span><span class="s2">': </span><span class="si">{</span><span class="n">polarity_score</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">file_name</span><span class="p">,</span> <span class="n">title</span> <span class="ow">in</span> <span class="n">file_titles</span><span class="p">:</span>
+    <span class="n">polarity_score</span> <span class="o">=</span> <span class="n">analyze_sentiment</span><span class="p">(</span><span class="n">file_name</span><span class="p">,</span> <span class="n">title</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -7979,11 +8004,36 @@ Lyrics for 'Here Comes the Sun' by The Beatles saved to 'here_comes_the_sun_lyri
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>Polarity score for 'Hurt': 0.06662257495590829
-Polarity score for 'Eye': 0.07175925925925926
-Polarity score for 'I': 0.0350657367324034
+<pre>Polarity score for 'Hurt by Johnny Cash': 0.06662257495590829
+Polarity score for 'Eye of the Tiger by Survivor': 0.07175925925925926
+Polarity score for 'I Will Survive by Gloria Gaynor': 0.0350657367324034
 </pre>
 </div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h4 id="Question-4-Response---Part-2:">Question 4 Response - Part 2:<a class="anchor-link" href="#Question-4-Response---Part-2:">¶</a></h4>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p>Does the reported polarity match your understanding of the song's lyrics? Why or why not do you think that might be?</p>
+<p>The polarity scores for 'Eye of the Tiger' and 'I Will Survive' align well with the positive themes of these songs, reflecting their messages of empowerment and resilience. However, I would have anticipated even higher scores closer to 1.0 on the positivity scale. The lower scores might be attributed to the algorithm's individual interpretation or the complexity of the lyrics.</p>
+<p>The polarity score for 'Hurt' is unexpected considering its somber and melancholic lyrics. While the algorithm assigns a more neutral score, this discrepancy could stem from the song's nuanced emotional content and the algorithm's interpretation of certain phrases and words. It seems to highlight some of the limitations of sentiment analysis algorithms in dealing with human emotional themes in songs and lyrics.</p>
+<p>Overall, while polarity scores offer valuable insights, they should be interpreted with caution, especially for songs with complex and emotional "human" themes.   As a potential remedy for polarity scores, perhaps one could search out benchmarks for data for polarity scores that were generated by other sentiment algorithms out there to see how this particular one stacks up.</p>
 </div>
 </div>
 </div>
